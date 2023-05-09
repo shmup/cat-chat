@@ -1,12 +1,9 @@
-from sqlalchemy import create_engine, MetaData, Table, Integer, String, \
-    Column, DateTime, ForeignKey, Numeric, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Integer, String, Column, DateTime, Boolean
 from datetime import datetime
+from .schemas import UserBase
 
-Base = declarative_base()
 
-
-class User(Base):
+class User(UserBase):
     """
     User model
     """
@@ -19,5 +16,3 @@ class User(Base):
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
     active = Column(Boolean(), default=True)
-
-
