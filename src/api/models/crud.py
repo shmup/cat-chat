@@ -20,21 +20,22 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.User).offset(skip).limit(limit).all()
 
 
-def create_user(db: Session, item: schemas.UserCreate) -> models.User:
+def create_user(db: Session, user: schemas.UserCreate) -> models.User:
     pw = PasswordUtils.generate_password()
     hashed_pw = PasswordUtils.get_hashed_password(pw)
     guid = str(uuid4())
-    db_user = models.UserBase(
-        name=item.name,
+    db_user = models.User(
+        name=user.name,
         hashed_password=hashed_pw,
         guid=guid
     )
+    create_user_item(db, db_user)
     return db_user
 
 
 def create_user_item(db: Session, item: schemas.UserCreate):
-    db_item = models.Item(**item.dict())
-    db.add(db_item)
+    #db_item = models.Item(**item.dict())
+    db.add(item)
     db.commit()
-    db.refresh(db_item)
-    return db_item
+    db.refresh(item)
+    return item

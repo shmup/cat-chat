@@ -18,6 +18,11 @@ def get_db():
         db.close()
 
 
+"""
+User routes
+"""
+
+
 @app.post("/api/users/", response_model=schemas.UserCreate)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     user = crud.get_user_by_name(db, name=user.name)
