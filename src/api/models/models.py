@@ -1,9 +1,10 @@
 from sqlalchemy import Integer, String, Column, DateTime, Boolean
 from datetime import datetime
-from .schemas import UserBase
+from pydantic import BaseModel
+from .database import Base
 
 
-class User(UserBase):
+class User(Base):
     """
     User model
     """
@@ -16,3 +17,16 @@ class User(UserBase):
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
     active = Column(Boolean(), default=True)
+
+
+class ItemBase(BaseModel):
+    title: str
+    description: str or None
+
+
+class Item(ItemBase):
+    id: int
+    owner_id: int
+
+    class Config:
+        orm_mode = True
