@@ -6,10 +6,10 @@ from typing import Optional
 class UserBase(BaseModel):
     name: str
     password: str
-    guid: str
+    guid: Optional[str]
     avatar_filename: Optional[str]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    created_at: Optional[datetime] = datetime.now()
+    updated_at: Optional[datetime] = datetime.now()
     active: Optional[bool] = True
 
     class Config:

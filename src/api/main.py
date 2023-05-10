@@ -38,9 +38,10 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return users
 
 
-@app.get("/api/users/{user_id}", response_model=schemas.UserBase)
-def read_user(user_id: int, db: Session = Depends(get_db)):
-    db_user = crud.get_user(db, user_id=user_id)
+@app.get("/api/users/{guid}", response_model=schemas.UserBase)
+def read_user(guid: str, db: Session = Depends(get_db)):
+    db_user = crud.get_user_by_guid(db, guid=guid)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
+    db_user.password = ""
     return db_user
