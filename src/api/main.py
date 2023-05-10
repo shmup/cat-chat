@@ -25,10 +25,11 @@ User routes
 
 @app.post("/api/users/", response_model=schemas.UserCreate)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    user = crud.get_user_by_name(db, name=user.name)
     if user:
-        raise HTTPException(status_code=400, detail="Name unavailable")
-    return crud.create_user(db=db, user=user)
+        existing_user = crud.get_user_by_name(db, name=user.name)
+        if existing_user:
+            raise HTTPException(status_code=400, detail="Name unavailable")
+        return crud.create_user(db=db, user=user)
 
 
 @app.get("/api/users/", response_model=list[schemas.UserBase])

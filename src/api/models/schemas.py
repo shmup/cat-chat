@@ -1,16 +1,16 @@
 from pydantic import BaseModel
 from datetime import datetime
+from typing import Optional
 
 
 class UserBase(BaseModel):
-    id: int or None
     name: str
     password: str
     guid: str
-    avatar_filename: str
-    created_on: datetime
-    updated_at: datetime or None
-    active: bool
+    avatar_filename: Optional[str]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]
+    active: Optional[bool] = True
 
     class Config:
         orm_mode = True

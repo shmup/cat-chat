@@ -26,8 +26,9 @@ def create_user(db: Session, user: schemas.UserCreate) -> models.User:
     guid = str(uuid4())
     db_user = models.User(
         name=user.name,
-        hashed_password=hashed_pw,
-        guid=guid
+        password=hashed_pw,
+        guid=guid,
+        avatar_filename=user.avatar_filename
     )
     create_user_item(db, db_user)
     return db_user
