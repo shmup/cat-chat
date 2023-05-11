@@ -35,7 +35,6 @@ def create_user(db: Session, user: schemas.UserCreate) -> models.User:
 
 
 def create_user_item(db: Session, item: schemas.UserCreate):
-    #db_item = models.Item(**item.dict())
     db.add(item)
     db.commit()
     db.refresh(item)

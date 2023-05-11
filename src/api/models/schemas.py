@@ -18,3 +18,8 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
+
+
+class UserAuth(BaseModel):
+    username: str
+    password: str

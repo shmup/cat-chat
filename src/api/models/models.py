@@ -1,8 +1,11 @@
 from sqlalchemy import Integer, String, Column, DateTime, Boolean, ForeignKey
 from datetime import datetime
 from pydantic import BaseModel
-from .database import Base
+from .database import Database
 from sqlalchemy.orm import relationship, Mapped, mapped_column
+
+db = Database()
+Base = db.get_base()
 
 
 class User(Base):
