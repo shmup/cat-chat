@@ -8,12 +8,16 @@ def get_user_by_user_id(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
 
 
+def get_user_by_creds(db: Session, username: str, password: str):
+    return db.query(models.User).filter(models.User.username == username and models.User.password == password).first()
+
+
 def get_user_by_guid(db: Session, guid: str):
     return db.query(models.User).filter(models.User.guid == guid).first()
 
 
 def get_user_by_name(db: Session, name: str):
-    return db.query(models.User).filter(models.User.name == name).first()
+    return db.query(models.User).filter(models.User.username == name).first()
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):
@@ -25,12 +29,15 @@ def create_user(db: Session, user: schemas.UserCreate) -> models.User:
     hashed_pw = PasswordUtils.get_hashed_password(pw)
     guid = str(uuid4())
     db_user = models.User(
-        name=user.name,
+        username=user.username,
         password=hashed_pw,
         guid=guid,
         avatar_filename=user.avatar_filename
     )
     create_user_item(db, db_user)
+    # After creating user, customize response
+    db_user.password = ""
+    db_user.guid = ""
     return db_user
 
 

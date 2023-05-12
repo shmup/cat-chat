@@ -1,22 +1,17 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import ChatBox from './components/ChatBox/ChatBox';
+import "./app.scss";
+import "xp.css/dist/98.css";
+import ChatInputBox from './components/ChatInputBox/ChatInputBox';
+import ChatWindow from './components/ChatWindow/ChatWindow';
 
-import { Navbar } from './components/Navbar'
-import { About } from './pages/About'
-import { Home } from './pages/Home'
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="container">
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/about" component={About} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div className="app-wrapper">
+      <ChatWindow />
+    </div>
   )
 }
 
-export default App
+export default App;

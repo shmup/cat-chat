@@ -6,6 +6,10 @@ import string
 class PasswordUtils:
 
     @staticmethod
+    def generate_token(self, length=50):
+        return self.generate_password(length)
+
+    @staticmethod
     def generate_password(length=20):
         alphabet = string.ascii_letters + string.digits
         password = ''.join(secrets.choice(alphabet) for i in range(length))

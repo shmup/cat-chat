@@ -14,7 +14,7 @@ class User(Base):
     """
     __tablename__ = 'users'
     id: Mapped[int] = mapped_column(Integer(), primary_key=True)
-    name = Column(String(20), nullable=False, index=True)
+    username = Column(String(20), nullable=False, index=True)
     password = Column(String(50), nullable=False)
     guid = Column(String(50), nullable=False)
     avatar_filename = Column(String(255))

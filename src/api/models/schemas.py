@@ -4,7 +4,7 @@ from typing import Optional
 
 
 class UserBase(BaseModel):
-    name: str
+    username: str
     password: str
     guid: Optional[str]
     avatar_filename: Optional[str]
