@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from models import schemas, user_crud
 from models.database import Database
-from routers import user_auth_router
+from routers import user_auth_router, ws_router
 import logging as log
 
 db = Database()
@@ -14,6 +14,7 @@ base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 app.include_router(user_auth_router)
+app.include_router(ws_router)
 
 """
 User routes
