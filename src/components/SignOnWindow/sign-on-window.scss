@@ -1,0 +1,106 @@
+@import "../../styles/mixins.scss";
+
+.sign-on-window {
+    width: 200px;
+}
+
+.sign-on-box-logo {
+    height: 35vh;
+    background: #0860A8 url("../../../public/images/cayenne.jpg") no-repeat 0 0;
+    background-size: 100% auto;
+    color: #fff;
+    position: relative;
+    border: 1px inset #666;
+
+    span {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        letter-spacing: 1cap;
+    }
+}
+
+.sign-on-fields-container {
+    margin: .5rem 0 0 0;
+
+    label {
+        color: #222;
+
+        &.bold {
+            font-weight: bold;
+        }
+
+        &.screen-name-label {
+            color: #333366;
+            font-style: italic;
+            font-size: .85rem;
+            font-family: Arial, Helvetica, sans-serif;
+
+            svg {
+                margin-left: .25rem;
+                color: maroon;
+            }
+        }
+    }
+
+    .field-row-stacked .sign-on-text-field {
+        @include text-box-styles;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .65rem;
+        margin: 0;
+        padding: .45rem;
+    }
+}
+
+.sign-on-help svg {
+    margin-left: -6px;
+}
+
+.sign-on-toolbar {
+    margin-top: 1rem;
+}
+
+.toolbar-buttons {
+    cursor: pointer;
+    border: 0;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+    min-width: auto;
+    min-height: auto;
+    padding: .25rem;
+
+    &:focus {
+        background-color: transparent;
+        border: 0;
+    }
+}
+
+.sign-on-settings {
+    padding-left: 15px;
+
+    svg {
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+    }
+}
+
+.sign-on-wrapper {
+    position: relative;
+
+    .sign-on-button-wrapper {
+        svg {
+            display: block;
+        }
+
+        right: 5px;
+        top: 0;
+        position: absolute;
+    }
+}
