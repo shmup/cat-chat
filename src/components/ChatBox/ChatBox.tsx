@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
-import RetroWindow from "../RetroWindow/RetroWindow";
 import "./chat-box.scss";
+import { processHistory } from "../websocket/message";
 
 export default function ChatBox({ chatHistory }: any) {
-    const [history, setHistory] = useState<string>(chatHistory ? processHistory(chatHistory) : "");
+    const processedHistory = chatHistory ? processHistory(chatHistory) : "";
+    const [history, setHistory] = useState<string>(processedHistory);
 
     useEffect(() => {
-        const h = processHistory(chatHistory);
-        setHistory(h);
+        if (chatHistory) {
+            const h = processHistory(chatHistory);
+            setHistory(h);
+        }
     }, []);
-
-    function processHistory(history: any[]) {
-        return history.map((line: any) => {
-            return `${line.from}: ${line.message}`;
-        }).join("\n");
-    }
 
     return (        
         <textarea 

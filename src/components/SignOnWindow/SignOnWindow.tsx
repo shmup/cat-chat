@@ -7,8 +7,8 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import BuildIcon from '@mui/icons-material/Build';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 
-export default function SignOnWindow() {
-    const [screenNameValue, setScreenNameValue] = useState<string>('');
+export default function SignOnWindow({ user }: any) {
+    const [screenNameValue, setScreenNameValue] = useState<string>(user.name);
     const [disabled, setDisabled] = useState<boolean>(false);
 
     function onGetScreeNameClicked() {

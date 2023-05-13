@@ -3,27 +3,27 @@ import ChatBox from "../ChatBox/ChatBox";
 import ChatInputBox from "../ChatInputBox/ChatInputBox";
 import RetroWindow from "../RetroWindow/RetroWindow";
 import "./chat-window.scss";
+import useWebSocket from "react-use-websocket";
+import { settings } from "../websocket/settings";
+import parseMessage from "../websocket/message";
 
-export default function ChatWindow({ sendJsonMessage, getMessageHistory, user }: any) {
-    const [messageHistory, setMessageHistory] = useState<string[]>([]);
-    
+export interface IMessage {
+    from: string;
+    message: string;
+};
+
+export default function ChatWindow({ user, sendMessage, messageHistory }: any) {
     useEffect(() => {
-        setUpdatedHistory();
+        
     }, []);
 
     function onChatInput(input: string) {
-        //const updatedHistory = chatHistory.concat([input]);
-        //setMessageHistory(updatedHistory);
-        sendJsonMessage({
+        const messageJson = JSON.stringify({
             from: user.name,
             message: input
         });
-        setUpdatedHistory();
+        sendMessage(messageJson);
         playIMSound();
-    }
-
-    function setUpdatedHistory() {
-        setMessageHistory(getMessageHistory());
     }
 
     function playIMSound() {
